@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Home from "./pages/Home.jsx";
+import Tables from "./pages/Tables.jsx";
+import imgLogo from "./assets/butterfly_logo.png";
 import {
   NotificationOutlined,
   UserOutlined,
@@ -7,19 +9,21 @@ import {
   TableOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
+import './App.css';
+
+
 
 const { Header, Content, Sider } = Layout;
 
 const componentMapping = {
-  '0': <Home />,
-  '1-1': <div>Profile Component</div>,
-  '1-2': <div>Settings Component</div>,
-  '2-1': <div>Masaları Görüntüle</div>,
-  '2-2': <div>Masa Ayarları</div>,
-  '3-1': <div>Alerts Component</div>,
-  '3-2': <div>Messages Component</div>,
+  0: <Home />,
+  "1-1": <div>Profile Component</div>,
+  "1-2": <div>Settings Component</div>,
+  "2-1": <Tables />,
+  "2-2": <div>Masa Ayarları</div>,
+  "3-1": <div>Alerts Component</div>,
+  "3-2": <div>Messages Component</div>,
 };
-
 
 const menuData = [
   {
@@ -30,10 +34,10 @@ const menuData = [
   {
     key: "1",
     icon: <UserOutlined />,
-    label: "User Menu",
+    label: "Menü Ayarları",
     children: [
-      { key: "1-1", label: "Profile" },
-      { key: "1-2", label: "Settings" },
+      { key: "1-1", label: "Menüyü Görüntüle" },
+      { key: "1-2", label: "Menüyü Düzenle" },
     ],
   },
   {
@@ -61,7 +65,7 @@ const App = () => {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
-  const [selectedContentKey, setSelectedContentKey] = useState('0');
+  const [selectedContentKey, setSelectedContentKey] = useState("0");
 
   const handleMenuClick = (e) => {
     setSelectedContentKey(e.key);
@@ -80,13 +84,22 @@ const App = () => {
           theme="dark"
           mode="horizontal"
           style={{
-            flex: 1,
+            display: "flex",
+            alignItems: "center",
             minWidth: 0,
             backgroundColor: "#0958d9",
             color: "white",
           }}
         >
-          <h2>Welcome to the Restaurant</h2>
+          
+          
+          <img src={imgLogo} alt="logo" className="bannerLogo" />
+          <h2>Parpali Pide</h2>
+          
+            
+            
+          
+          
         </Menu>
       </Header>
       <Layout>
@@ -137,7 +150,7 @@ const App = () => {
               borderRadius: borderRadiusLG,
             }}
           >
-            {componentMapping[selectedContentKey] || 'Content'}
+            {componentMapping[selectedContentKey] || "Content"}
           </Content>
         </Layout>
       </Layout>
