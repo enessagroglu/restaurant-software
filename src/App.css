@@ -4,3 +4,14 @@
   border-radius: 50%;
   margin-right: 10px;
 }
+
+h1{
+  color: #0549b8;
+}
+
+.table-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
