@@ -1,7 +1,7 @@
 import { Card, Modal, Button } from "antd";
 import { useSelector, useDispatch } from 'react-redux';
-import { setTableOccupied, setTableEmpty, setTableClosed, setTableReopened } from '../store/Tables';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { setTableOccupied, setTableEmpty, loadTablesFromJson, saveTablesToJson } from '../store/TableSlice';
 
 import masa1 from "../assets/numbers/1.png";
 import masa2 from "../assets/numbers/2.png";
@@ -17,10 +17,15 @@ import masa10 from "../assets/numbers/10.png";
 export default function Tables() {
   const { Meta } = Card;
   const dispatch = useDispatch();
-  const tables = useSelector((state) => state.tables);
+  const tablesState = useSelector((state) => state.tables);
+  const { tables, loading, error } = tablesState; // State'den verileri, loading ve error flag'lerini al
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTable, setSelectedTable] = useState(null);
+
+  useEffect(() => {
+    dispatch(loadTablesFromJson());
+  }, [dispatch]);
 
   const handleOpenModal = (tableNumber) => {
     setSelectedTable(tableNumber);
@@ -32,32 +37,41 @@ export default function Tables() {
     setSelectedTable(null);
   };
 
-  const tableData = [
-    { img: masa1, title: "Masa 1", status: tables.status1 },
-    { img: masa2, title: "Masa 2", status: tables.status2 },
-    { img: masa3, title: "Masa 3", status: tables.status3 },
-    { img: masa4, title: "Masa 4", status: tables.status4 },
-    { img: masa5, title: "Masa 5", status: tables.status5 },
-    { img: masa6, title: "Masa 6", status: tables.status6 },
-    { img: masa7, title: "Masa 7", status: tables.status7 },
-    { img: masa8, title: "Masa 8", status: tables.status8 },
-    { img: masa9, title: "Masa 9", status: tables.status9 },
-    { img: masa10, title: "Masa 10", status: tables.status10 },
+  const handleTableOccupied = (tableNumber) => {
+    dispatch(setTableOccupied({ tableNumber }));
+    dispatch(saveTablesToJson(tables)); // State güncellendiğinde JSON'a kaydet
+  };
+
+  const handleTableEmpty = (tableNumber) => {
+    dispatch(setTableEmpty({ tableNumber }));
+    dispatch(saveTablesToJson(tables)); // State güncellendiğinde JSON'a kaydet
+  };
+
+  const tableImages = [
+    masa1, masa2, masa3, masa4, masa5, masa6, masa7, masa8, masa9, masa10,
   ];
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   return (
     <div>
       <h1>Masalar</h1>
       <div className="table-layout">
-        {tableData.map((table, index) => (
+        {Object.keys(tables).map((tableKey, index) => (
           <Card
-            key={index}
+            key={tableKey}
             hoverable
             style={{ width: 200 }}
-            cover={<img alt={table.title} src={table.img} />}
+            cover={<img alt={`Masa ${index + 1}`} src={tableImages[index]} />}
             onClick={() => handleOpenModal(index + 1)}
           >
-            <Meta title={table.title} description={`status: ${table.status}`} />
+            <Meta title={`Masa ${index + 1}`} description={`Durum: ${tables[tableKey]}`} />
           </Card>
         ))}
       </div>
@@ -75,9 +89,11 @@ export default function Tables() {
       >
         {selectedTable && (
           <div>
-            <p>Masa {selectedTable} bilgileri burada görüntülenebilir.</p>
             <p>Durum: {tables[`status${selectedTable}`]}</p>
-            
+            <div className="modalButtonGroup">
+              <Button type="primary" onClick={() => handleTableOccupied(selectedTable)}>Masa Dolu</Button>
+              <Button type="primary" onClick={() => handleTableEmpty(selectedTable)}>Masa Boş</Button>
+            </div>
           </div>
         )}
       </Modal>

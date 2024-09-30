@@ -15,3 +15,12 @@ h1{
   gap: 20px;
 }
 
+.modalButtonGroup{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.modalButtonGroup button{
+  margin: 2%;
+}
