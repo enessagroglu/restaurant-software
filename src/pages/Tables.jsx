@@ -1,7 +1,7 @@
 import { Card, Modal, Button } from "antd";
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { setTableOccupied, setTableEmpty, loadTablesFromJson, saveTablesToJson } from '../store/TableSlice';
+import { useState } from 'react';
+import { setTableOccupied, setTableEmpty } from '../store/TableSlice';
 
 import masa1 from "../assets/numbers/1.png";
 import masa2 from "../assets/numbers/2.png";
@@ -17,15 +17,10 @@ import masa10 from "../assets/numbers/10.png";
 export default function Tables() {
   const { Meta } = Card;
   const dispatch = useDispatch();
-  const tablesState = useSelector((state) => state.tables);
-  const { tables, loading, error } = tablesState; // State'den verileri, loading ve error flag'lerini al
+  const tables = useSelector((state) => state.tables.tables); // Tabloları state'ten alıyoruz
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTable, setSelectedTable] = useState(null);
-
-  useEffect(() => {
-    dispatch(loadTablesFromJson());
-  }, [dispatch]);
 
   const handleOpenModal = (tableNumber) => {
     setSelectedTable(tableNumber);
@@ -39,25 +34,15 @@ export default function Tables() {
 
   const handleTableOccupied = (tableNumber) => {
     dispatch(setTableOccupied({ tableNumber }));
-    dispatch(saveTablesToJson(tables)); // State güncellendiğinde JSON'a kaydet
   };
 
   const handleTableEmpty = (tableNumber) => {
     dispatch(setTableEmpty({ tableNumber }));
-    dispatch(saveTablesToJson(tables)); // State güncellendiğinde JSON'a kaydet
   };
 
   const tableImages = [
     masa1, masa2, masa3, masa4, masa5, masa6, masa7, masa8, masa9, masa10,
   ];
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
 
   return (
     <div>
