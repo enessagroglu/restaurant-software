@@ -16,9 +16,27 @@ import { UploadOutlined } from "@ant-design/icons";
 const { TextArea } = Input;
 
 export default function AddMenuItem() {
-    const dispatch = useDispatch();
-    const [form] = Form.useForm();
+  const dispatch = useDispatch();
+  const [form] = Form.useForm();
 
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [group, setGroup] = useState("");
+  const [ingredients, setIngredients] = useState("");
+  const [price, setPrice] = useState(0);
+
+  const handleAdd = () => {
+    console.log("name", name);
+    console.log("description", description);
+    console.log("group", group);
+    console.log("ingredients", ingredients);
+    console.log("price", price);
+    setName("");
+    setDescription("");
+    setGroup("");
+    setIngredients("");
+    setPrice(0);
+  };
   const props = {
     name: "file",
     action: "https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload",
@@ -42,26 +60,32 @@ export default function AddMenuItem() {
       <div className="menu-item-ekle-container">
         <div className="menu-item-ekle">
           <div className="">
-            <div  className="center-container">
+            <div className="center-container">
               <img src={imgLogo} alt="logo" className="logo-menu" />
-              
             </div>
             <div className="center-container">
-            <h1>Menüye Ekle</h1>
+              <h1>Menüye Ekle</h1>
             </div>
           </div>
 
           <Form form={form} layout="vertical">
             <Form.Item label="Yemek Adı" required>
-              <Input placeholder="yemek adı yazın" />
+              <Input
+                placeholder="yemek adı yazın"
+                onChange={(e) => setName(e.target.value)}
+              />
             </Form.Item>
             <Form.Item label="Açıklama">
-              <Input placeholder="Açıklama yazın" />
+              <Input
+                placeholder="Açıklama yazın"
+                onChange={(e) => setDescription(e.target.value)}
+              />
             </Form.Item>
             <Form.Item label="Grup" required>
               <Select
                 showSearch
                 placeholder="Grup Seçin"
+                onChange={(e) => setGroup(e)}
                 filterOption={(input, option) =>
                   (option?.label ?? "")
                     .toLowerCase()
@@ -103,8 +127,8 @@ export default function AddMenuItem() {
             <Form.Item>
               <Form.Item label="İçindekiler">
                 <TextArea
-                  value={""}
-                  // onChange={(e) => setValue(e.target.value)}
+                  value={ingredients}
+                  onChange={(e) => setIngredients(e.target.value)}
                   placeholder="içindekiler"
                   autoSize={{
                     minRows: 3,
@@ -121,18 +145,25 @@ export default function AddMenuItem() {
                   `₺ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                 }
                 parser={(value) => value?.replace(/\$\s?|(,*)/g, "")}
-                //   onChange={onChange}
+                onChange={(e) => setPrice(e)}
               />
             </Form.Item>
 
-            <div className="" style={{display:"flex"}} >
-              
-                <Button style={{ width: "50%", marginRight:"20px" }} type="primary">
-                  Ekle
-                </Button>
-                <Button style={{ width: "50%", marginRight:"20px" }} type="primary" onClick={() => dispatch(setOperation("empty"))} >
-                  geri
-                </Button>
+            <div className="" style={{ display: "flex" }}>
+              <Button
+                style={{ width: "50%", marginRight: "20px" }}
+                type="primary"
+                onClick={() => handleAdd()}
+              >
+                Ekle
+              </Button>
+              <Button
+                style={{ width: "50%", marginRight: "20px" }}
+                type="primary"
+                onClick={() => dispatch(setOperation("empty"))}
+              >
+                geri
+              </Button>
             </div>
           </Form>
         </div>
