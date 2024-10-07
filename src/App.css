@@ -24,3 +24,34 @@ h1{
 .modalButtonGroup button{
   margin: 2%;
 }
+
+.menu-item-ekle-container{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.menu-item-ekle{
+  width: 30%;
+  
+}
+
+.button-position-right{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button-position-center{
+  display: flex;
+  justify-content: center;
+}
+
+.center-container{
+  display: flex;
+  justify-content: center;
+}
+
+.logo-menu{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}

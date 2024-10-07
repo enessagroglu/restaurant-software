@@ -10,6 +10,8 @@ import {
 } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
 import './App.css';
+import RestaurantMenu from "./pages/MenuContent/RestaurantMenu.jsx";
+import RestaurantMenuSettings from "./pages/MenuContent/RestaurantMenuSettings.jsx";
 
 
 
@@ -17,8 +19,8 @@ const { Header, Content, Sider } = Layout;
 
 const componentMapping = {
   0: <Home />,
-  "1-1": <div>Profile Component</div>,
-  "1-2": <div>Settings Component</div>,
+  "1-1": <div><RestaurantMenu/></div>,
+  "1-2": <div><RestaurantMenuSettings/></div>,
   "2-1": <Tables />,
   "2-2": <div>Masa Ayarları</div>,
   "3-1": <div>Alerts Component</div>,
