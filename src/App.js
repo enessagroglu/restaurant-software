@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Home from "./pages/Home.jsx";
 import Tables from "./pages/Tables.jsx";
 import imgLogo from "./assets/butterfly_logo.png";
+import Home from "./pages/Home.jsx";
 import {
   NotificationOutlined,
   UserOutlined,
@@ -96,7 +96,7 @@ const App = () => {
           
           
           <img src={imgLogo} alt="logo" className="bannerLogo" />
-          <h2>Parpali Pide</h2>
+          <h2 style={{color:"white"}}>Parpali Pide</h2>
           
             
             

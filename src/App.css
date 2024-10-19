@@ -67,7 +67,7 @@ h2{
 }
 
 .menu-item {
-  flex: 0 1 calc(33.33% - 20px); /* Elemanların 3 sütun halinde dizilmesi ve aralarındaki boşluk */
+  flex: 0 1 calc(33% - 5px); /* Elemanların 3 sütun halinde dizilmesi ve aralarındaki boşluk */
   box-sizing: border-box;
   margin: 10px;
   padding: 10px;
@@ -75,6 +75,8 @@ h2{
   border-radius: 8px;
   text-align: center;
   font-weight: bold;
+  min-width: none;
+  max-width: 300px;
 }
 
 .menu-item img {
