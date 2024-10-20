@@ -15,6 +15,7 @@ import karisikAcik from "../../assets/menuItems/karisik-acik.webp";
 
 const menuItems = [
   {
+    id: 1,
     name: "Kıymalı Kapalı Pide",
     description: "Parpali Klasikleri",
     ingredients: "Kıyma / Trabzon Tereyağı / Çıtır Hamur ",
@@ -23,6 +24,7 @@ const menuItems = [
     price: 200,
   },
   {
+    id: 2,
     name: "Kavurmalı Kapalı Pide",
     description: "Parpali Klasikleri",
     ingredients: "Kavurma / Trabzon Tereyağı / Çıtır Hamur",
@@ -31,6 +33,7 @@ const menuItems = [
     price: 200,
   },
   {
+    id: 3,
     name: "Pastırmalı Kapalı Pide",
     description: "Parpali Klasikleri",
     ingredients: "Pastırma / Trabzon Tereyağı / Çıtır Hamur",
@@ -39,6 +42,7 @@ const menuItems = [
     price: 220,
   },
   {
+    id: 4,
     name: "Pastırmalı Kaşarlı Kapalı Pide",
     description: "Parpali Klasikleri",
     ingredients: "Pastırma / Kaşar / Trabzon Tereyağı / Çıtır Hamur",
@@ -47,6 +51,7 @@ const menuItems = [
     price: 200,
   },
   {
+    id: 5,
     name: "Kavurmalı Yuvarlak Pide",
     description: "Parpali Klasikleri",
     ingredients: "Kavurma / Trabzon Tereyağı / Çıtır Hamur ",
@@ -55,6 +60,7 @@ const menuItems = [
     price: 190,
   },
   {
+    id: 6,
     name: "Kıymalı Yuvarlak Pide",
     description: "Parpali Klasikleri",
     ingredients: "Kıyma / Trabzon Tereyağı / Çıtır Hamur",
@@ -63,6 +69,7 @@ const menuItems = [
     price: 190,
   },
   {
+    id: 7,
     name: "Peynirli Yuvarlak Pide",
     description: "Parpali Klasikleri",
     ingredients: "Peynir / Trabzon Tereyağı / Çıtır Hamur",
@@ -71,6 +78,7 @@ const menuItems = [
     price: 190,
   },
   {
+    id: 8,
     name: "Karışık Yuvarlak Pide",
     description: "Parpali Klasikleri",
     ingredients: "Kavurma /Peynir / Trabzon Tereyağı / Çıtır Hamur",
@@ -79,6 +87,7 @@ const menuItems = [
     price: 190,
   },
   {
+    id: 9,
     name: "Kavurmalı Açık Pide",
     description: "Parpali Klasikleri",
     ingredients: "Kavurma / Trabzon Tereyağı / Çıtır Hamur",
@@ -87,6 +96,7 @@ const menuItems = [
     price: 200,
   },
   {
+    id: 10,
     name: "Kıymalı Açık Pide",
     description: "Parpali Klasikleri",
     ingredients: "Kıyma / Trabzon Tereyağı / Çıtır Hamur",
@@ -95,6 +105,7 @@ const menuItems = [
     price: 200,
   },
   {
+    id: 11,
     name: "Peynirli Açık Pide",
     description: "Parpali Klasikleri",
     ingredients: "Peynir / Trabzon Tereyağı / Çıtır Hamur",
@@ -103,6 +114,7 @@ const menuItems = [
     price: 200,
   },
   {
+    id: 12,
     name: "Karışık Açık Pide",
     description: "Parpali Klasikleri",
     ingredients: "Kavurma / Peynir / Trabzon Tereyağı / Çıtır Hamur",
